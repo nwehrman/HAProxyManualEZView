@@ -44,6 +44,7 @@ done < ${conf_file}.2 >> ${conf_file}
 
 for conf_file in ./docs/*/configuration.html
 do
+	DIR="$(dirname "${conf_file}")"
 	if [[ ! -e ${DIR}/full_line ]]; then 
 		echo "Working on ${conf_file}"
 		mv ${conf_file} ${conf_file}.2
@@ -52,7 +53,6 @@ do
 		sed -i 's/col-lg-12//g' ${conf_file}
 		echo "Conversion Complete"
 		rm ${conf_file}.2
-		DIR="$(dirname "${conf_file}")"
 		touch ${DIR}/full_line
 		echo "Removed backup"
 	else
