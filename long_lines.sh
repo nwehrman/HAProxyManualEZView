@@ -6,6 +6,7 @@ pretty_text=0
 fileconvert () 
 {
 while IFS= read -r line
+do
         if [[ "$line" == *'<pre class="prettyprint'* ]] || [[ $pretty_text == "1" ]]; then
                 echo "${line}"
                 pretty_text=1
@@ -42,12 +43,19 @@ done < ${conf_file}.2 >> ${conf_file}
 }
 
 for conf_file in ./docs/*/configuration.html
-	do 
-	echo "Working on ${conf_file}"
-	mv ${conf_file} ${conf_file}.2
-	echo "Moved file, starting conversion"
-	fileconvert 
-	echo "Conversion Complete"
-	rm ${conf_file}.2
-	echo "Removed backup"
+do
+	if [[ ! -e ${DIR}/full_line ]]; then 
+		echo "Working on ${conf_file}"
+		mv ${conf_file} ${conf_file}.2
+		echo "Moved file, starting conversion"
+		fileconvert 
+		sed -i 's/col-lg-12//g' ${conf_file}
+		echo "Conversion Complete"
+		rm ${conf_file}.2
+		DIR="$(dirname "${conf_file}")"
+		touch ${DIR}/full_line
+		echo "Removed backup"
+	else
+		echo "Found ${DIR}/full_line skipping"
+	fi
 done

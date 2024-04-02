@@ -29,9 +29,9 @@ a.anchor {
 
 #page-wrapper {
     padding: 0 15px 50px;
-    width: 720px;
+    width: 85%;
     background-color: #fff;
-    margin-left: 350px;
+    margin-left: 15%;
 }
 
 #sidebar {
@@ -75,6 +75,9 @@ a.anchor {
 .well-small ul {
 	padding: 0px;
 }
+.table {
+	width: auto;
+}
 .table th,
 .table td.pagination-centered {
 	text-align: center;
@@ -92,6 +95,8 @@ pre.text {
 	background: transparent;
         border: none;
         margin-bottom: 18px;
+	white-space: break-spaces;
+	word-break: break-word;
 }
 pre.arguments {
         font-size: 13px;
@@ -142,6 +147,9 @@ h5 {
 }
 .separator {
     margin-bottom: 18px;
+	box-sizing: content-box;
+	margin-right: auto;
+	display: inline-block;
 }
 
 div {
